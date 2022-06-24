@@ -1,0 +1,31 @@
+{
+  "compilerOptions": {
+    "moduleResolution": "node",
+    "target": "esnext",
+    "module": "esnext",
+    "rootDir": "src",
+    "sourceRoot": "src",
+    "sourceMap": true,
+    "outDir": "lib",
+    "declaration": true,
+    "lib": [
+      "es2019",
+      "esnext",
+      "dom"
+    ],
+    "strict": true,
+    "noImplicitAny": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true
+  },
+  "ts-node": {
+    "esm": true
+  },
+  "include": [
+    "./src"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}
