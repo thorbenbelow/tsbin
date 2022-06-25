@@ -1,4 +1,4 @@
-import { BinaryExpression, BinaryOperation, ExpressionStatement, Literal, Program } from "./AST";
+import { BinaryExpression, BinaryOperation, ExpressionStatement, Literal, Program } from "./ast";
 import { Interpreter } from "./Interpreter";
 
 const interpreter = new Interpreter();

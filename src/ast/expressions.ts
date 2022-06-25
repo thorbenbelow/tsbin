@@ -1,28 +1,7 @@
-import { Interpreter } from "./Interpreter";
-
-type Value = any;
-
-export interface ASTNode {
-  eval(interpreter: Interpreter): Value;
-  node_type(): string;
-}
+import { Value, ASTNode } from './nodes';
+import { Interpreter } from '../Interpreter'
 
 export interface Expression { }
-
-export class Program implements ASTNode {
-
-  constructor(
-    readonly body: Array<ASTNode>
-  ) { }
-
-  node_type(): string { return "Program" }
-
-  eval(interpreter: Interpreter): Value {
-    for (const child of this.body) {
-      return child.eval(interpreter)
-    }
-  }
-}
 
 export class ExpressionStatement implements ASTNode {
   constructor(
@@ -40,23 +19,7 @@ export enum BinaryOperation {
   Plus = '+',
   Minus = '-'
 }
-
-export type LiteralValue = number | string | boolean;
-
-export class Literal implements ASTNode {
-  constructor(
-    readonly value: LiteralValue
-  ) { }
-
-  node_type() { return "Literal" }
-  eval(interpreter: Interpreter): Value {
-    return this.value
-  }
-
-}
-
-
-export class BinaryExpression implements ASTNode {
+export class BinaryExpression implements ASTNode, Expression {
   constructor(
     readonly operation: BinaryOperation,
     readonly left: Literal,
@@ -76,3 +39,14 @@ export class BinaryExpression implements ASTNode {
 }
 
 
+export type LiteralValue = number | string | boolean | undefined;
+export class Literal implements ASTNode {
+  constructor(
+    readonly value: LiteralValue
+  ) { }
+
+  node_type() { return "Literal" }
+  eval(interpreter: Interpreter): Value {
+    return this.value
+  }
+}
